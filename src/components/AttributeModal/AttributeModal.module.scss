@@ -1,0 +1,70 @@
+.container { 
+    width : 100vw ; 
+    min-height :100vh ; 
+    background :rgba(0 ,0 ,0 ,.7 ); 
+    position : fixed ; 
+    top : 0 ; 
+    left : 0 ; 
+    padding-top : 5rem ; 
+    z-index : 100 ; 
+    
+    .content { 
+        width : 70vw ; 
+
+        padding : 20px ; 
+        background : #fff ;
+        display : block  ; 
+        margin : 0 auto ; 
+
+        & > h1 { 
+            color : red ; 
+            
+        }
+        .attribute {
+            
+
+                margin-bottom : 2rem ; 
+
+                .name { 
+                   font-weight : 700 ; 
+                   font-size :  1.8rem ; 
+                   font-family:  'Raleway' , 'Roboto Condensed';
+                    margin-bottom : 1rem ;
+                }
+
+                .btns { 
+
+                    button { 
+                        text-transform: uppercase ; 
+                        color: black ;
+                        border : 1px solid black ;
+                        background : transparent ;
+                        font-family:  'Source Sans Pro' , 'Raleway';
+                        font-weight : 400 ;
+                        font-size : 1.6rem ; 
+                        text-align: center ;
+                        padding : 1rem 1.2rem  ; 
+                        margin-right : 2rem ;
+                        margin-bottom: 1rem ;
+
+                    }
+
+
+                
+               
+            }
+        }
+
+        .addToCart { 
+            background :hsla(136, 53%, 59%, 1) ;
+            width: 292px ; 
+            height : 52px ; 
+            text-transform: uppercase;
+            margin : 2rem 0 ; 
+            color : #fff ; 
+            font :  600 1.6rem  'Raleway' , 'Roboto Condensed' ; 
+            outline : none ; 
+            border : none ;  
+        }
+    }
+}

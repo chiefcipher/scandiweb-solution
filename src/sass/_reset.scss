@@ -1,0 +1,25 @@
+*, 
+*::before , 
+*::after { 
+    margin : 0 ; 
+    padding : 0 ; 
+    box-sizing: border-box ; 
+
+}
+
+
+html {
+    font-family: 'Raleway' , sans-serif , -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+    font-size : 62.5% ; //10 out of 16px * 100%. makes it easier to calculate pixels as 1rem = 10px and 1.2rem = 12px etc 
+    scroll-behavior: smooth;
+
+}
+
+
+body { 
+    width : 100vw ; 
+    height : min-content ; 
+    overflow-x: hidden ;
+}

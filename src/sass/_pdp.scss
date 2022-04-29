@@ -1,0 +1,112 @@
+.pdp { 
+    padding : 10rem 0 ; 
+
+    &__content { 
+
+        display: flex ; 
+        flex-direction: row ; 
+
+        &--images { 
+            display: flex ; 
+            flex-direction: column; 
+            align-items : center ;
+            margin-right : 2rem ; 
+
+            img { 
+                width : 100px ; 
+                height : 100px  ; 
+                margin : 2rem 0 ;  
+            }
+            
+        }
+
+
+        &--image { 
+            margin-right : 5rem ; 
+
+            img  { 
+                width : 500px ; 
+                height : 500px ;
+            }
+        }
+
+        .details { 
+            font-family:  'Raleway';
+
+            &__title { 
+                font-size : 3rem ; 
+                font-weight : 600 ; 
+
+            }
+            &__secondary { 
+                 font-size : 3rem ; 
+                 margin: 2rem 0 ;
+                font-weight : 300; 
+            }
+
+            &__attribute {
+            
+
+                margin-bottom : 2rem ; 
+
+                &--name { 
+                   font-weight : 700 ; 
+                   font-size :  1.8rem ; 
+                   font-family:  'Raleway' , 'Roboto Condensed';
+                    margin-bottom : 1rem ;
+                }
+
+                &--btns { 
+
+                    button { 
+                        text-transform: uppercase ; 
+                        color: black ;
+                        border : 1px solid black ;
+                        background : transparent ;
+                        font-family:  'Source Sans Pro' , 'Raleway';
+                        font-weight : 400 ;
+                        font-size : 1.6rem ; 
+                        text-align: center ;
+                        padding : 1rem 1.2rem  ; 
+                        margin-right : 2rem ;
+                        margin-bottom: 1rem ;
+
+                    }
+
+
+                }
+                
+               
+            }
+
+            &__price { 
+
+               span { 
+                   margin-top : 1rem ; 
+                   display : block ; 
+                   font : 700 2.4rem 'Raleway' , 'Roboto Condensed'
+
+               }
+            }
+
+            &__button {
+                 background :hsla(136, 53%, 59%, 1) ;
+                 width: 292px ; 
+                 height : 52px ; 
+                 text-transform: uppercase;
+                 margin : 2rem 0 ; 
+                 color : #fff ; 
+                 font :  600 1.6rem  'Raleway' , 'Roboto Condensed'
+
+            }
+
+            &__description { 
+                font  : 400 1.6rem/2.6rem 'Roboto' ,'Raleway' ; 
+                width  : 292px ;
+
+
+            }
+        }
+         
+    }
+}

@@ -26,7 +26,11 @@ const initState = {
     }, 
     redirectTo : false , 
     cart : [], 
-    showBackdrop  : false 
+    showBackdrop  : false , 
+    hasNetworkError : {
+        status  : false , 
+        error : null 
+    }
 
 }
 
@@ -184,13 +188,25 @@ const showSelectAttributeModal= (state , action )=> {
             showAttributeModal : true 
         })
     })
-
 }
+
+const setNetworkError = (state , action) => { 
+    return updateObject(state , { 
+        hasNetworkError : {
+            status : true , 
+            error : action.error
+        }
+    })
+}
+
 
 export const reducer = (state = initState , action ) => { 
     switch(action.type) {
         case actionTypes.POPULATE_DATA : {
             return populateData(state , action)
+        }
+        case actionTypes.SET_NETWORK_ERROR : { 
+            return setNetworkError(state , action)
         }
         case actionTypes.ADD_PDP_INIT : {
             return addPdpInit(state , action)            

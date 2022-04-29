@@ -1,5 +1,22 @@
 import * as actions from './actions'
 
+
+export const populateData = (payload)=>{
+    return { 
+        type : actions.POPULATE_DATA ,
+        payload : {
+          ...payload 
+        }
+    }
+}
+
+export const setNetworkError = (e)=>{
+    return { 
+        type : actions.SET_NETWORK_ERROR ,
+        error : e 
+        
+    }
+}
 export const addPdp = (data , source)=>{
 
     return dispatch =>{

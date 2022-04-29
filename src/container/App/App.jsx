@@ -2,7 +2,7 @@ import React from 'react'
 import { Route,  Routes } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actionTypes from '../../store/actions'
-
+import * as actionCreators from '../../store/actionCreators'
 import Navigation from '../../components/Navigation/Navigation';
 import Category  from '../../components/Category/Category';
 import Cart from '../../components/Cart/Cart';
@@ -37,38 +37,48 @@ class App extends React.PureComponent  {
               })
               
               
-            console.log("data returned" , result.data)
         })
-        .catch(e => console.log(e))
+        .catch(e => this.props.catchNetworkError(e))
 
     
   }
 
   render () { 
 
-      const  {routes} = this.props ;
+    const  {routes} = this.props ;
+    if (this.props.netWorkErrorStatus){ 
+      console.log('[NETOWRK INFORMATION]' , this.props.netWorkErrorInformation)
+    }
+    const appContent = this.props.netWorkErrorStatus === false ? 
+          <>
+                <Navigation   /> 
+                <Routes>
+                  {
+                    routes.map( (item , i ) =>   
+                    <Route 
+                      key={i}
+                      path={'/' + item}  element={<Category show={item} />} />
+                  ) } 
+                  <Route path='/cart' exact element={<Cart />} /> 
+                  <Route path='/pdp' exact element={<PDP />} /> 
+                  
+                </Routes>
+
+              <Backdrop /> 
+              {
+                this.props.showAttributeModal ?<SelectAttribute /> : null   
+              }
+      
+          </> : 
+          <>
+            <h1>error asscessing internet, please check to ensure you have internet connection </h1>
+            
+          </>
 
     return (
 
       <div className="App"  >
-        <Navigation   /> 
-          <Routes>
-            {
-              routes.map( (item , i ) =>   
-              <Route 
-                key={i}
-                path={'/' + item}  element={<Category show={item} />} />
-            ) } 
-            <Route path='/cart' exact element={<Cart />} /> 
-            <Route path='/pdp' exact element={<PDP />} /> 
-             
-          </Routes>
-
-        <Backdrop /> 
-        {
-          this.props.showAttributeModal ?<SelectAttribute /> : null   
-        }
- 
+          {appContent}
       </div>
     );
   }
@@ -78,18 +88,16 @@ class App extends React.PureComponent  {
 const mapStateToProps = state => {
   return { 
     routes : state.routes ,
-    showAttributeModal : state.pdp.showAttributeModal
+    showAttributeModal : state.pdp.showAttributeModal , 
+    netWorkErrorStatus : state.hasNetworkError.status , 
+    netWorkErrorInformation : state.hasNetworkError.error 
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-     populateData : (payload)=> dispatch({
-       type : actionTypes.POPULATE_DATA ,
-       payload : {
-         ...payload 
-       }
-     })
+     populateData : (payload)=> dispatch(actionCreators.populateData(payload)),
+     catchNetworkError : (e)=> dispatch(actionCreators.setNetworkError(e))
   }
 }
 

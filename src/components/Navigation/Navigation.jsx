@@ -30,7 +30,7 @@ class Navigation extends PureComponent {
         .then(result =>  {
                 this.props.setCurrencies(result.data)
         })
-        .catch(e => console.log(e) )
+        .catch(e => this.props.catchNetworkError(e))
     }
     componentDidUpdate = ()=> { 
     }
@@ -153,7 +153,7 @@ const mapStateToProps= state => {
 
         routes : state.routes , 
         currencies : state.currencies , 
-        defaultCurrency : state.defaultCurrency
+        defaultCurrency : state.defaultCurrency 
     }
 }
 
@@ -162,7 +162,8 @@ const mapDispatchToProps = dispatch => {
         quantify : payload=>dispatch(actionCreators.quantifyCartItem(payload)),
         toggleBackdrop : () => dispatch(actionCreators.toggleBackdrop()) , 
         setCurrencies : (data)=>dispatch(actionCreators.setCurrencies(data)) , 
-        changeDefaultCurrency : (data)=>dispatch(actionCreators.changeDefaultCurrency(data))
+        changeDefaultCurrency : (data)=>dispatch(actionCreators.changeDefaultCurrency(data)) , 
+        catchNetworkError : (e)=> dispatch(actionCreators.setNetworkError(e))
     }
 }
 export default connect(mapStateToProps , mapDispatchToProps)(Navigation)

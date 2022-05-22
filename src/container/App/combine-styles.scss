@@ -1,14 +1,12 @@
-//COMBINE ALL SCSS MIXINS SO THEY CAN BE IMPORTED INTO APP.JSX 
+//COMBINE ALL SCSS MIXINS SO THEY CAN BE IMPORTED INTO APP.JSX
 
-@import "../../sass/variables"  ; 
-@import "../../sass/reset" ; 
-@import "../../sass/variables" ; 
-@import "../../sass/mixins" ; 
-@import "../../sass/utils" ; 
+@import "../../sass/variables";
+@import "../../sass/reset";
+@import "../../sass/variables";
+@import "../../sass/mixins";
+@import "../../sass/utils";
 
-@import "../../sass/app" ; 
-@import "../../sass/pdp" ; 
+@import "../../sass/app";
+@import "../../sass/pdp";
 
-
-@import "../../sass/navigation" ; 
-@import "../../sass/ui" ; 
+@import "../../sass/navigation";

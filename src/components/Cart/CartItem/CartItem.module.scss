@@ -1,146 +1,148 @@
-@import "../../../sass/variables" ;
+@import "../../../sass/variables";
 
-.item { 
-    border-top : 2px solid hsl(0 , 0% , 90%) ; 
+.item {
+  border-top: 2px solid hsl(0, 0%, 90%);
+  display: flex;
+  flex-direction: row;
+  padding: 2rem 0;
+  width: 100%;
+  overflow: hidden;
 
+  &.fromNav {
+    &:hover {
+      box-shadow: 0 0 5px hsla(0, 0%, 56%, 1);
+    }
+  }
+  .detail {
+    font-family: $f-raleway;
+    margin-right: auto;
+    padding-left: 1rem;
+
+    .name {
+      font-size: 2rem;
+      font-weight: 600;
+    }
+    .brand {
+      font-size: 1.8rem;
+      font-weight: 400;
+      margin: 0.5rem 0;
+    }
+
+    .price {
+      font-size: 1.6rem;
+      font-weight: 700;
+    }
+
+    .newAttributes {
+      .new {
+        h2 {
+          margin-top: 1rem;
+        }
+
+        button {
+          padding: 0.8rem;
+          font-size: 1.4rem;
+          outline-offset: 2px;
+          border: 1px solid black;
+          margin-right: 0.5rem;
+          margin-bottom: 0.5rem;
+          font-weight: 400;
+          font-family: "Source sans pro";
+          color: hsla(216, 8%, 12%, 1);
+          cursor: pointer;
+        }
+      }
+    }
+
+    &.fromNav {
+      .name {
+        font-size: 1.4rem;
+      }
+
+      .brand {
+        font-size: 1.2rem;
+        font-weight: 300;
+        margin: 0.5rem 0;
+      }
+
+      .price {
+        font-size: 1.4rem;
+        font-weight: 700;
+      }
+      .newAttributes button {
+        font-size: 1.2rem;
+      }
+
+      .newAttributes h2 {
+        font-weight: 500;
+        font-size: 1.2rem;
+      }
+    }
+  }
+
+  .cta {
     display: flex;
-    flex-direction: row ;
-    padding  :2rem 0  ; 
-    width : 90% ;
-    overflow : hidden ; 
+    flex-direction: column;
+    justify-content: space-around;
+    margin-right: 2rem;
 
-    .detail {
-        font-family: $f-raleway; ;
-        margin-right: auto ; 
-        padding-left : 1rem ; 
+    .quantity {
+      font-size: 20px;
+      font-family: $f-raleway;
+      font-weight: 500;
+      text-align: center;
+    }
+    button {
+      width: 3.5rem;
+      height: 3.5rem;
+      font-size: 3rem;
+      background: transparent;
+      border: 1px solid hsla(216, 8%, 12%, 1);
+      cursor: pointer;
+    }
+  }
 
-        .name {
-            font-size : 2rem ; 
-            font-weight : 600 ;
-        }
-        .brand  { 
-            font-size : 1.8rem ; 
-            font-weight: 400 ;
-            margin : .5rem 0; 
-        }
+  .img {
+    width: 141px;
+    height: 185px;
+    position: relative;
 
-        .price { 
-            font-size : 1.6rem ; 
-            font-weight : 700 ; 
-
-        }
-        
-        
-        .newAttributes {
-
-            .new { 
-                h2 { 
-                    margin-top : 1rem ;
-                }
-            
-                button { 
-                    padding : .8rem ;                        
-                    font-size :1.4rem ;
-                    outline-offset: 2px ;
-                    border  :1px solid black ;
-                    margin-right : .5rem ; 
-                    margin-bottom: .5rem ;
-                    font-weight : 400 ; 
-                    font-family: 'Source sans pro' ;
-                    color : hsla(216, 8%, 12%, 1) ;
-
-                }
-            }
-        }
-        
-        &.fromNav { 
-            .name { 
-                font-size : 1.4rem
-            }
-
-            .brand  { 
-                font-size : 1.2rem ; 
-                font-weight: 300 ;
-                margin : .5rem 0; 
-            }
-    
-            .price { 
-                font-size : 1.4rem ; 
-                font-weight : 700 ; 
-    
-            }
-            .newAttributes button { 
-                font-size:  1.2rem ;
-            }
-
-            .newAttributes h2 { 
-                font-weight: 500 ;
-                font-size : 1.2rem 
-            }
-        }
+    &.notCart {
+      height: 130px;
     }
 
-    .cta { 
-        display: flex ;
-        flex-direction: column ; 
-        justify-content: space-around;
-        margin-right : 2rem ; 
-
-        .quantity { 
-            font-size : 20px ; 
-            font-family: $f-raleway ; 
-            font-weight : 500 ; 
-            text-align: center ;
-                        }
-        button { 
-            width : 3.5rem ; 
-            height : 3.5rem ; 
-            font-size : 3rem ; 
-            background: transparent;
-            border : 1px solid hsla(216, 8%, 12%, 1) ; 
-        }
+    img {
+      width: inherit;
+      height: inherit;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      z-index: 2;
     }
 
-    .img { 
-        width : 141px ; 
-        height : 185px ; 
-        position: relative ;
-
-       img  { 
-            width :  inherit ; 
-            height : inherit ; 
-            position :  absolute ; 
-            width : 100% ; 
-            height : 100% ; 
-            z-index: 2;
-        }
-
-        
-        .chevron { 
-            z-index: 3 ; 
-            position: absolute; 
-            width : 2rem ; 
-            height :2rem ;
-            bottom : 5% ;
-            padding : 5px ;
-            background : rgba(0 , 0 , 0 , .5) ;
-            box-shadow: 0 0 5px rgba(0 , 0 , 0 , .3);
-       
-            &.right {
-                right : 3% ;
-                transform: translateY(-50%) rotate(180deg);
-            }
-            &.left { 
-                right : 22% ;
-                transform: translateY(-50%);
-            }
-
-           
-        }
-
-        &.notCart .chevron { 
-            display: none ;
-        }
+    .chevron {
+      z-index: 3;
+      position: absolute;
+      width: 2rem;
+      height: 2rem;
+      bottom: 5%;
+      padding: 5px;
+      background: rgba(0, 0, 0, 0.5);
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+      cursor : pointer ; 
+      
+      &.right {
+        right: 3%;
+        transform: translateY(-50%) rotate(180deg);
+      }
+      &.left {
+        right: 22%;
+        transform: translateY(-50%);
+      }
     }
 
+    &.notCart .chevron {
+      display: none;
+    }
+  }
 }

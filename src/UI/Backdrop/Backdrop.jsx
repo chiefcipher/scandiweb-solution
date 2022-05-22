@@ -1,27 +1,32 @@
-
-import React from 'react' ; 
-import {connect} from 'react-redux' ; 
-
-import * as actionCreators from '../../store/actionCreators'
-const Backdrop = props => { 
-    return(
-        <div className="backdrop" style={{display :props.showBackdrop ? 'block' : 'none'}} onClick={props.toggleBackdrop}>
-
-        </div>
-    )
+import React from "react";
+import { connect } from "react-redux";
+import * as actionCreators from "../../store/actionCreators";
+import cNames from "./Backdrop.module.scss";
+class Backdrop extends React.PureComponent {
+  render() {
+    const { showBackdrop, toggleBackdrop } = this.props;
+    return (
+      <div
+        className={cNames.backdrop}
+        style={{ display: showBackdrop ? "block" : "none" }}
+        role="button"
+        aria-label="Show Backdrop"
+        onClick={toggleBackdrop}
+        onKeyDown={() => {}}
+        onKeyUp={() => {}}
+        onKeyPress={toggleBackdrop}
+        tabIndex={0}
+      />
+    );
+  }
 }
 
+const mapStateToProps = (state) => ({
+  showBackdrop: state.showBackdrop,
+});
 
-const mapStateToProps = state => {
-    return { 
-        showBackdrop : state.showBackdrop
-    }
-}
+const mapDispatchToProps = (dispatch) => ({
+  toggleBackdrop: () => dispatch(actionCreators.toggleBackdrop()),
+});
 
-
-const mapDispatchToProps = dispatch => { 
-    return { 
-        toggleBackdrop : ()=> dispatch(actionCreators.toggleBackdrop())
-    }
-}
-export default connect(mapStateToProps , mapDispatchToProps)(Backdrop)
+export default connect(mapStateToProps, mapDispatchToProps)(Backdrop);

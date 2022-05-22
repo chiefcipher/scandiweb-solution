@@ -1,71 +1,109 @@
-import React, {PureComponent} from "react";
+import React, { PureComponent } from "react";
 import { connect } from "react-redux";
-
-import * as actionCreators from '../../store/actionCreators';
 import { Navigate } from "react-router";
-import {CategoryItem} from './CategoryItem/CategoryItem' ; 
+import * as actionCreators from "../../store/actionCreators";
+import { CategoryItem } from "./CategoryItem/CategoryItem";
 
-import cNames from "./Category.module.scss" ; 
+import { LOAD_CATEGORY } from "../../graphql/query.js";
 
-export class Category extends PureComponent {
+import cNames from "./Category.module.scss";
 
+class Category extends PureComponent {
+  componentDidMount() {
+    this.makeNetworkRequest();
+  }
+  componentDidUpdate(prevProps) {
+    if (prevProps.show !== this.props.show) this.makeNetworkRequest();
+  }
+  makeNetworkRequest = () => {
+    const { show, setCategory } = this.props;
+    fetch("http://localhost:4000/graphql", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({
+        query: LOAD_CATEGORY(show),
+      }),
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        const { name, products } = result.data.category;
+        setCategory({ name, products });
+      })
+      .catch((e) => console.log(e));
+  };
+  render() {
+    const { redirect } = this.props;
+    if (redirect === "/pdp") {
+      return <Navigate to={redirect} replace />;
+    }
 
-    render() { 
-        if (this.props.redirect === '/pdp' ){ 
-               return  <Navigate to={this.props.redirect} replace/>
-        }
-        
-        const {show , categories , defaultCurrency} = this.props 
-        const data = categories.find(category => category.name === show)
-        
+    const { category, defaultCurrency, addPdp } = this.props;
 
-        return ( 
-                
+    const content =
+      category.name !== null && category.products !== null ? (
         <div className={cNames.category}>
-            <h1 className={cNames.heading}>{data.name}</h1>
-            <div className={cNames.contents}>
-                {
-                    data.products.map ( ({name , gallery , prices , brand , description  , attributes , inStock , id } , index) => {
-                        const price = prices.find( item => item.currency.symbol === defaultCurrency.symbol) 
-                        const clickData={ gallery , name  , brand , description , attributes , prices , id} 
+          <h1 className={cNames.heading}>{category.name}</h1>
+          <div className={cNames.contents}>
+            {category.products.map(
+              ({
+                name,
+                gallery,
+                prices,
+                brand,
+                description,
+                attributes,
+                inStock,
+                id,
+              }) => {
+                const price = prices.find(
+                  (item) => item.currency.symbol === defaultCurrency.symbol
+                );
+                const clickData = {
+                  gallery,
+                  name,
+                  brand,
+                  description,
+                  attributes,
+                  prices,
+                  id,
+                };
 
-                    return <CategoryItem 
+                return (
+                  <CategoryItem
+                    src={gallery[0]}
+                    name={name}
+                    symbol={price.currency.symbol}
+                    amount={price.amount}
+                    inStock={inStock}
+                    key={name}
+                    click={() => addPdp(clickData)}
+                    cartIconClick={() => addPdp(clickData, "CART_ICON")}
+                  />
+                );
+              }
+            )}
+          </div>
+        </div>
+      ) : (
+        <div> loading </div>
+      );
 
-                            src={gallery[0]}
-                            name={name}
-                            symbol={price.currency.symbol }
-                            amount ={price.amount}
-                            inStock={inStock}
-
-                            key={index} 
-                            
-                            click={()=>  this.props.addPdp(clickData)}
-                            cartIconClick={()=>  this.props.addPdp(clickData ,'CART_ICON')}
-                            /> 
-                    }) 
-                }
-           </div>
-
-           
-        </div>)
-    }
+    return content;
+  }
 }
 
+const mapStateToProps = (state) => ({
+  redirect: state.redirectTo,
+  defaultCurrency: state.defaultCurrency,
+  category: state.category,
+});
 
+const mapDispathToProps = (dispatch) => ({
+  addPdp: (data, source) => dispatch(actionCreators.addPdp(data, source)),
+  setCategory: (payload) => dispatch(actionCreators.setCategory(payload)),
+});
 
-const mapStateToProps = state => {
-    return {
-        redirect : state.redirectTo , 
-        categories : state.categories , 
-        defaultCurrency : state.defaultCurrency 
-    }
-}
-
-
-const mapDispathToProps = dispatch => { 
-    return { 
-        addPdp : (data , source)=> dispatch(actionCreators.addPdp(data, source)),
-    }
-}
-
-export default connect(mapStateToProps , mapDispathToProps )(Category)
+export default connect(mapStateToProps, mapDispathToProps)(Category);

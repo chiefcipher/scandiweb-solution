@@ -1,9 +1,13 @@
 @import "../../sass/variables" ; 
+@import "../../sass/mixins" ; 
 
 
 .category { 
-    padding : 10rem  0 ; 
+    padding-top : 10rem  ;
+    padding-bottom : 10rem  ; 
+    overflow: hidden  ; 
     font-family: $f-raleway ;
+    @include setleftrightpadding; 
  
      .heading { 
          font-size : 3rem ; 

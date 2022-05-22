@@ -1,37 +1,40 @@
-@import "../../sass/variables" ;
+@import "../../sass/variables";
+@import "../../sass/mixins";
 
 .cartPage {
-    .title {
-        font-weight : 700  ; 
-        font-size : 3.2rem ; 
-        font-family : $f-raleway ;
-        text-transform: uppercase;
-        margin : 7rem 0 5rem 0  ; 
-    }
-   .content { 
-        
-   }
-   .footer { 
+  padding-top: 2rem;
+  padding-bottom: 30rem;
+  @include setleftrightpadding;
 
-    & > div { 
-        display : block ;
-        width : 100% ; 
-        margin : 1.5rem 0 ; 
-        font-size : 1.8rem ;
-        
-        span { 
-            font-weight : 700 ; 
-        }
+  .title {
+    font-weight: 700;
+    font-size: 3.2rem;
+    font-family: $f-raleway;
+    text-transform: uppercase;
+    margin: 7rem 0 5rem 0;
+  }
+  .content {
+  }
+  .footer {
+    & > div {
+      display: block;
+      width: 100%;
+      margin: 1.5rem 0;
+      font-size: 1.8rem;
+
+      span {
+        font-weight: 700;
+      }
     }
 
-    & > button { 
-        color : #fff ; 
-        background : $c-primary ; 
-        width : 27.9rem ; 
-        height : 4.3rem ; 
-        font-weight : 700  ; 
-        outline :none ; 
-        border : none ;
+    & > button {
+      color: #fff;
+      background: $c-primary;
+      width: 27.9rem;
+      height: 4.3rem;
+      font-weight: 700;
+      outline: none;
+      border: none;
     }
-}
+  }
 }

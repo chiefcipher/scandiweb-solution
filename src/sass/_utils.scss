@@ -1,12 +1,16 @@
-//REMOVES THE OUTLINE AND BORDER IN BUTTONS 
-.no-outline-border { 
-    outline : none ; 
-    border : none ; 
+//REMOVES THE OUTLINE AND BORDER IN BUTTONS
+.no-outline-border {
+  outline: none;
+  border: none;
 }
 
 //size and price label in pdp
 .pdp-label {
-    font-weight : 700 ; 
-    font-size : 1.8rem ;
-    font-family: 'Roboto Condensed', 'Raleway';
+  font-weight: 700;
+  font-size: 1.8rem;
+  font-family: "Roboto Condensed", "Raleway";
+}
+
+.p-cursor {
+  cursor: pointer;
 }
